@@ -1,1 +1,20 @@
-[{"title":"Angular 11","price":"10000","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png","id":"b9e63e78-47a1-4b2e-8372-326072fff94e"},{"title":"Vue","price":"10000","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png","id":"35a3910d-5931-4128-a15c-41a730f88a74"},{"title":"RxJs","price":"10000","img":"https://malcoded.com/static/4416ca096472d7da64817eb3bd2c6687/ba299/Angular-RxJs.png","id":"55668a01-25aa-4bc9-807f-ab77cd359c6b"}]
+[
+  {
+    "title": "Angular 11",
+    "price": "100",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png",
+    "id": "b9e63e78-47a1-4b2e-8372-326072fff94e"
+  },
+  {
+    "title": "Vue",
+    "price": "100",
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png",
+    "id": "35a3910d-5931-4128-a15c-41a730f88a74"
+  },
+  {
+    "title": "RxJs",
+    "price": "100",
+    "img": "https://malcoded.com/static/4416ca096472d7da64817eb3bd2c6687/ba299/Angular-RxJs.png",
+    "id": "55668a01-25aa-4bc9-807f-ab77cd359c6b"
+  }
+]
