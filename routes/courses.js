@@ -12,6 +12,11 @@ router.get('/', async (req, res) => {
   });
 });
 
+router.post('/edit', async (req, res) => {
+  await Course.update(req.body);
+  res.redirect('/courses');
+});
+
 router.get('/:id', async (req, res) => {
   const course = await Course.getById(req.params.id);
 
@@ -32,11 +37,6 @@ router.get('/:id/edit', async (req, res) => {
     title: `Edit course ${course.title}`,
     course
   });
-});
-
-router.get('/edit', async (req, res) => {
-  await Course.update(req.body);
-  res.redirect('/courses');
 });
 
 module.exports = router;
