@@ -1,4 +1,1 @@
-{
-  "courses": [],
-  "price": 0
-}
+{"courses":[{"title":"Angular 11","price":"100","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png","id":"b9e63e78-47a1-4b2e-8372-326072fff94e","count":1}],"price":100}
