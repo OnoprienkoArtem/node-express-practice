@@ -5,6 +5,7 @@ const homeRoutes = require('./routes/home');
 const cartRoutes = require('./routes/cart');
 const addRoutes = require('./routes/add');
 const coursesRoutes = require('./routes/courses');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -26,9 +27,18 @@ app.use('/add', addRoutes);
 app.use('/courses', coursesRoutes);
 app.use('/cart', cartRoutes);
 
+async function start() {
+  try {
+    const url = `mongodb+srv://dbArt:timmdb@cluster0.lzbkv.mongodb.net/test?retryWrites=true&w=majority`;
+    await mongoose.connect(url, {useNewUrlParser: true});
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+start();
 
 const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
