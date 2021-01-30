@@ -1,20 +1,25 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
 const path = require('path');
+const express = require('express');
+const Handlebars = require('handlebars');
+const mongoose = require('mongoose');
+const exphbs = require('express-handlebars');
+
 const homeRoutes = require('./routes/home');
 const cartRoutes = require('./routes/cart');
 const addRoutes = require('./routes/add');
 const coursesRoutes = require('./routes/courses');
-const mongoose = require('mongoose');
+
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+
 
 const app = express();
 
-const hbs = exphbs.create({
+app.engine('hbs', exphbs({
   defaultLayout: 'main',
-  extname: 'hbs'
-});
+  extname: 'hbs',
+  handlebars: allowInsecurePrototypeAccess(Handlebars)
+}));
 
-app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'pages');
 
@@ -30,7 +35,10 @@ app.use('/cart', cartRoutes);
 async function start() {
   try {
     const url = ``;
-    await mongoose.connect(url, {useNewUrlParser: true});
+    await mongoose.connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
