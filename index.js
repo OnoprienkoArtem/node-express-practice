@@ -29,7 +29,7 @@ app.use('/cart', cartRoutes);
 
 async function start() {
   try {
-    const url = `mongodb+srv://dbArt:timmdb@cluster0.lzbkv.mongodb.net/test?retryWrites=true&w=majority`;
+    const url = ``;
     await mongoose.connect(url, {useNewUrlParser: true});
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
