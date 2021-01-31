@@ -9,7 +9,7 @@ const cartRoutes = require('./routes/cart');
 const addRoutes = require('./routes/add');
 const coursesRoutes = require('./routes/courses');
 
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
 
 const app = express();
@@ -37,7 +37,8 @@ async function start() {
     const url = ``;
     await mongoose.connect(url, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: false
     });
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
