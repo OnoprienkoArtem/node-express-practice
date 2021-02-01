@@ -9,6 +9,8 @@ const cartRoutes = require('./routes/cart');
 const addRoutes = require('./routes/add');
 const coursesRoutes = require('./routes/courses');
 
+const User = require('./models/user');
+
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
 
@@ -22,6 +24,15 @@ app.engine('hbs', exphbs({
 
 app.set('view engine', 'hbs');
 app.set('views', 'pages');
+
+app.use(async (req, res, next) => {
+  try {
+    req.user = await User.findById('601872836fafd4531fe0ce3f');
+    next();
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -40,6 +51,18 @@ async function start() {
       useUnifiedTopology: true,
       useFindAndModify: false
     });
+    const candidate = await User.findOne();
+    if (!candidate) {
+      const user = new User({
+        email: 'art@m.com',
+        name: 'Art',
+        cart: {
+          item: []
+        }
+      });
+
+      await user.save();
+    }
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
