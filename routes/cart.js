@@ -1,10 +1,12 @@
 const {Router} = require('express');
-const router = Router();
 const Course = require('../models/course');
+const router = Router();
 
 function mapCartItems(cart) {
   return cart.items.map(c => ({
-    ...c.courseId._doc, count: c.count
+    ...c.courseId._doc,
+    id: c.courseId.id,
+    count: c.count
   }));
 }
 
@@ -21,9 +23,7 @@ router.post('/add', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const user = await req.user
-    .populate('cart.items.courseId')
-    .execPopulate();
+  const user = await req.user.populate('cart.items.courseId').execPopulate();
 
   const courses = mapCartItems(user.cart);
 

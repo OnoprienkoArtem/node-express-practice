@@ -27,7 +27,7 @@ app.set('views', 'pages');
 
 app.use(async (req, res, next) => {
   try {
-    req.user = await User.findById('601872836fafd4531fe0ce3f');
+    req.user = await User.findById('6021aeaaae684f7871d3ad5c');
     next();
   } catch (e) {
     console.log(e);
@@ -45,7 +45,7 @@ app.use('/cart', cartRoutes);
 
 async function start() {
   try {
-    const url = ``;
+    const url = `mongodb+srv://dbArt:gznpBtapWTacjN7Q@cluster0.lzbkv.mongodb.net/shop`;
     await mongoose.connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
