@@ -1,4 +1,5 @@
 const {Router} = require('express');
+const Order = require('../models/order');
 const router = Router();
 
 router.get('/', (req, res) => {
@@ -6,6 +7,11 @@ router.get('/', (req, res) => {
     isOrder: true,
     title: 'Orders'
   });
+});
+
+router.post('/', async (req, res) => {
+
+  res.redirect('/orders');
 });
 
 module.exports = router;
