@@ -28,7 +28,7 @@ app.set('views', 'pages');
 
 app.use(async (req, res, next) => {
   try {
-    req.user = await User.findById('6021aeaaae684f7871d3ad5c');
+    req.user = await User.findById('6025a8f6c62d7e871e3fc211');
     next();
   } catch (e) {
     console.log(e);
@@ -59,7 +59,7 @@ async function start() {
         email: 'art@m.com',
         name: 'Art',
         cart: {
-          item: []
+          items: []
         }
       });
 
