@@ -1,1 +1,32 @@
 <h1>Orders</h1>
+
+{{#if orders.length}}
+
+    {{#each orders}}
+
+
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            Order
+                        </span>
+                        <p>Date</p>
+                        <p><e>user</e> useremail</p>
+
+                        <ol>
+
+                        </ol>
+                        <hr>
+                        <p>Price:<span class="price"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {{/each}}
+
+{{else}}
+   <p>List of orders are empty</p>
+{{/if}}
