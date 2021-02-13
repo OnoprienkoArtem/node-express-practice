@@ -10,16 +10,19 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">
-                            Order
+                            Order <small>{{_id}}</small>
                         </span>
-                        <p>Date</p>
-                        <p><e>user</e> useremail</p>
-
+                        <p>{{date}}</p>
+                        <p><e>{{user.userId.name}}</e> ({{user.userId.email}})</p>
                         <ol>
-
+                            {{#each courses}}
+                                <li>
+                                    {{course.title}} (x<stron>{{count}}</stron>)
+                                </li>
+                            {{/each}}
                         </ol>
                         <hr>
-                        <p>Price:<span class="price"></span></p>
+                        <p>Price:<span class="price">{{price}}</span></p>
                     </div>
                 </div>
             </div>
