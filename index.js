@@ -3,6 +3,7 @@ const express = require('express');
 const Handlebars = require('handlebars');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
 
 const homeRoutes = require('./routes/home');
 const cartRoutes = require('./routes/cart');
@@ -10,6 +11,8 @@ const addRoutes = require('./routes/add');
 const coursesRoutes = require('./routes/courses');
 const ordersRoutes = require('./routes/orders');
 const authRoutes = require('./routes/auth');
+
+const varMiddleware = require('./middleware/variables');
 
 const User = require('./models/user');
 
@@ -35,10 +38,19 @@ app.use(async (req, res, next) => {
     console.log(e);
   }
 });
+app.use(varMiddleware);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.urlencoded({extended: true}));
+
+app.use(session({
+  secret: 'some value',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+
 
 app.use('/', homeRoutes);
 app.use('/add', addRoutes);
@@ -49,7 +61,7 @@ app.use('/auth', authRoutes);
 
 async function start() {
   try {
-    const url = `mongodb+srv://dbArt:gznpBtapWTacjN7Q@cluster0.lzbkv.mongodb.net/shop`;
+    const url = ``;
     await mongoose.connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
