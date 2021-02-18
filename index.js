@@ -38,19 +38,15 @@ app.use(async (req, res, next) => {
     console.log(e);
   }
 });
-app.use(varMiddleware);
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(express.urlencoded({extended: true}));
-
 app.use(session({
   secret: 'some value',
   resave: false,
   saveUninitialized: false,
 }));
-
-
+app.use(varMiddleware);
 
 app.use('/', homeRoutes);
 app.use('/add', addRoutes);
