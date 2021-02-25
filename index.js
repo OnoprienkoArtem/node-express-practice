@@ -18,11 +18,11 @@ const authRoutes = require('./routes/auth');
 const varMiddleware = require('./middleware/variables');
 const userMiddleware = require('./middleware/user');
 
-const User = require('./models/user');
-
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
 const MONGODB_URI = '';
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 
 const store = new MongoStore({
@@ -48,6 +48,7 @@ app.use(session({
   store
 }));
 app.use(csrf());
+app.use(flash());
 app.use(varMiddleware);
 app.use(userMiddleware);
 
@@ -75,5 +76,3 @@ async function start() {
 }
 
 start();
-
-const PORT = process.env.PORT || 3000;

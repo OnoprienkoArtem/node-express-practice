@@ -7,6 +7,7 @@ router.get('/login', async (req, res) => {
   res.render('auth/login', {
     title: 'Sign up',
     isLogin: true,
+    error: req.flash('error'),
   })
 });
 
@@ -50,6 +51,7 @@ router.post('/register', async (req, res) => {
     const candidate = await User.findOne({email});
 
     if (candidate) {
+      req.flash('error', 'User with this email already exists!');
       res.redirect('/auth/login#register');
     } else {
       const hashPassword = await bcrypt.hash(password, 10);

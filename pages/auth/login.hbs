@@ -7,6 +7,11 @@
             </ul>
         </div>
         <div id="login" class="col s6 offset-s3">
+
+            {{#if error}}
+                <p class="alert">{{error}}</p>
+            {{/if}}
+
             <h2>Sign in</h2>
             <form action="/auth/login" method="POST">
                 <div class="input-field">
@@ -26,6 +31,11 @@
             </form>
         </div>
         <div id="register" class="col s6 offset-s3">
+
+            {{#if error}}
+                <p class="alert">{{error}}</p>
+            {{/if}}
+
             <h2>Sign up</h2>
             <form action="/auth/register" method="POST">
                 <div class="input-field">
