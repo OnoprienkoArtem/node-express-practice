@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const csrf = require('csurf');
+const flash = require('connect-flash');
 const Handlebars = require('handlebars');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
