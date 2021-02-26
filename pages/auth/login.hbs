@@ -8,8 +8,8 @@
         </div>
         <div id="login" class="col s6 offset-s3">
 
-            {{#if error}}
-                <p class="alert">{{error}}</p>
+            {{#if loginError}}
+                <p class="alert">{{loginError}}</p>
             {{/if}}
 
             <h2>Sign in</h2>
@@ -32,8 +32,8 @@
         </div>
         <div id="register" class="col s6 offset-s3">
 
-            {{#if error}}
-                <p class="alert">{{error}}</p>
+            {{#if registerError}}
+                <p class="alert">{{registerError}}</p>
             {{/if}}
 
             <h2>Sign up</h2>
