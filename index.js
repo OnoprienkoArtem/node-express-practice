@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
 const homeRoutes = require('./routes/home');
 const cartRoutes = require('./routes/cart');
@@ -18,15 +19,14 @@ const authRoutes = require('./routes/auth');
 const varMiddleware = require('./middleware/variables');
 const userMiddleware = require('./middleware/user');
 
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
-const MONGODB_URI = '';
+const MONGODB_URI = 'mongodb+srv://dbArt:gznpBtapWTacjN7Q@cluster0.lzbkv.mongodb.net/shop';
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 
 const store = new MongoStore({
-  collection: 'session',
+  collection: 'sessions',
   uri: MONGODB_URI,
 });
 
