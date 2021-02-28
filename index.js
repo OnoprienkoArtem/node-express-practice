@@ -20,7 +20,7 @@ const varMiddleware = require('./middleware/variables');
 const userMiddleware = require('./middleware/user');
 
 
-const MONGODB_URI = 'mongodb+srv://dbArt:gznpBtapWTacjN7Q@cluster0.lzbkv.mongodb.net/shop';
+const MONGODB_URI = '';
 const PORT = process.env.PORT || 3000;
 
 const app = express();

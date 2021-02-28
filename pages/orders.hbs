@@ -1,10 +1,6 @@
 <h1>Orders</h1>
-
 {{#if orders.length}}
-
     {{#each orders}}
-
-
         <div class="row">
             <div class="col s6 offset-s3">
                 <div class="card">
@@ -22,14 +18,12 @@
                             {{/each}}
                         </ol>
                         <hr>
-                        <p>Price:<span class="price">{{price}}</span></p>
+                        <p>Price: <span class="price">{{price}}</span></p>
                     </div>
                 </div>
             </div>
         </div>
-
     {{/each}}
-
 {{else}}
    <p>List of orders are empty</p>
 {{/if}}

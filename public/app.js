@@ -6,7 +6,7 @@ const toCurrency = price => {
 }
 
 const toDate = date => {
-  return new Intl.NumberFormat('ru-RU', {
+  return new Intl.DateTimeFormat('ru-RU', {
     day: '2-digit',
     month: 'long',
     year: 'numeric',

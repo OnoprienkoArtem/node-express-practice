@@ -27,6 +27,7 @@ router.get('/', auth, async (req, res) => {
 router.post('/', auth, async (req, res) => {
   try {
     const user = await req.user.populate('cart.items.courseId').execPopulate();
+
     const courses = user.cart.items.map(i => ({
       count: i.count,
       course: {...i.courseId._doc}
@@ -37,7 +38,7 @@ router.post('/', auth, async (req, res) => {
         name: req.user.name,
         userId: req.user
       },
-      course: courses
+      courses: courses
     });
 
     await order.save();
