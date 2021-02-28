@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const sendgrid = require('nodemailer-sendgrid-transport');
 const User = require('../models/user');
 const keys = require('../keys');
+const regEmail = require('../emails/registration');
 const router = Router();
 
 const transporter = nodemailer.createTransport(sendgrid({
@@ -70,6 +71,7 @@ router.post('/register', async (req, res) => {
       });
       await user.save();
       res.redirect('/auth/login#login');
+      await transporter.sendMail(regEmail(email));
     }
   } catch (e) {
     console.log(e);
