@@ -1,5 +1,6 @@
 const {Router} = require('express');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const sendgrid = require('nodemailer-sendgrid-transport');
 const User = require('../models/user');
@@ -73,6 +74,36 @@ router.post('/register', async (req, res) => {
       res.redirect('/auth/login#login');
       await transporter.sendMail(regEmail(email));
     }
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+router.get('/reset', (req, res) => {
+  res.render('auth/reset', {
+    title: 'Forgot your password?',
+    error: req.flash('error'),
+  })
+});
+
+router.post('/reset', (req, res) => {
+  try {
+    crypto.randomBytes(32, async (error, buffer) => {
+      if (error) {
+        req.flash('error', 'Something went wrong, please try again later.');
+        return res.redirect('/auth/reset');
+      }
+
+      const token = buffer.toString('hex');
+      const candidate = await User.findOne({email: req.body.email});
+
+      if (candidate) {
+
+      } else {
+        req.flash('error', 'There is no such email.');
+        res.redirect('/auth/reset');
+      }
+    });
   } catch (e) {
     console.log(e);
   }
