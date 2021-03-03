@@ -6,6 +6,7 @@ const sendgrid = require('nodemailer-sendgrid-transport');
 const User = require('../models/user');
 const keys = require('../keys');
 const regEmail = require('../emails/registration');
+const resetEmail = require('../emails/reset');
 const router = Router();
 
 const transporter = nodemailer.createTransport(sendgrid({
@@ -98,7 +99,11 @@ router.post('/reset', (req, res) => {
       const candidate = await User.findOne({email: req.body.email});
 
       if (candidate) {
-
+        candidate.resetToken = token;
+        candidate.resetTokenExp = Date.now() + 60 * 60 * 1000;
+        await candidate.save();
+        await transporter.sendMail(resetEmail(candidate.email, token));
+        res.redirect('/auth/login');
       } else {
         req.flash('error', 'There is no such email.');
         res.redirect('/auth/reset');
