@@ -129,8 +129,10 @@ router.get('/password:token', async (req, res) => {
       return res.redirect('/auth/login');
     } else {
       res.render('auth/password', {
-        title: 'Forgot password?',
+        title: 'Recovery password?',
         error: req.flash('error'),
+        userId: user._id.toString(),
+        token: req.params.token,
       });
     }
   } catch (e) {
