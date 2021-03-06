@@ -4,15 +4,20 @@ const auth = require('../middleware/auth');
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const courses = await Course.find()
+  try {
+    const courses = await Course.find()
     .populate('userId', 'email name')
     .select('price title img');
 
-  res.render('courses', {
-    title: 'Courses',
-    isCourses: true,
-    courses
-  });
+    res.render('courses', {
+      title: 'Courses',
+      isCourses: true,
+      userId: req.user ? req.user._id.toString() : null,
+      courses
+    });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 router.get('/:id/edit', auth, async (req, res) => {
