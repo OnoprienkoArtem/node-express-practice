@@ -3,6 +3,10 @@ const Course = require('../models/course');
 const auth = require('../middleware/auth');
 const router = Router();
 
+function isOwner(course, req) {
+  return course.userId.toString() !== req.user._id.toString();
+}
+
 router.get('/', async (req, res) => {
   try {
     const courses = await Course.find()
@@ -25,12 +29,20 @@ router.get('/:id/edit', auth, async (req, res) => {
     return res.redirect('/');
   }
 
-  const course = await Course.findById(req.params.id);
+  try {  
+    const course = await Course.findById(req.params.id);
 
-  res.render('course-edit', {
-    title: `Edit course ${course.title}`,
-    course
-  });
+    if (!isOwner(course, req)) {
+      return res.redirect('/courses');
+    }
+
+    res.render('course-edit', {
+      title: `Edit course ${course.title}`,
+      course
+    });
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 router.post('/edit', auth, async (req, res) => {
