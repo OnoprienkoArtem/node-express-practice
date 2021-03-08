@@ -1,4 +1,4 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const Course = require('../models/course');
 const auth = require('../middleware/auth');
 const router = Router();
@@ -24,28 +24,36 @@ router.post('/add', auth, async (req, res) => {
 });
 
 router.get('/', auth, async (req, res) => {
-  const user = await req.user.populate('cart.items.courseId').execPopulate();
+  try {
+    const user = await req.user.populate('cart.items.courseId').execPopulate();
 
-  const courses = mapCartItems(user.cart);
-
-  res.render('cart', {
-    title: 'Cart',
-    isCart: true,
-    courses: courses,
-    price: computePrice(courses)
-  })
+    const courses = mapCartItems(user.cart);
+  
+    res.render('cart', {
+      title: 'Cart',
+      isCart: true,
+      courses: courses,
+      price: computePrice(courses)
+    })
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 router.delete('/remove/:id', auth, async (req, res) => {
-  await req.user.removeFromCart(req.params.id);
-  const user = await req.user.populate('cart.items.courseId').execPopulate();
+  try {
+    await req.user.removeFromCart(req.params.id);
+    const user = await req.user.populate('cart.items.courseId').execPopulate();
 
-  const courses = mapCartItems(user.cart);
-  const cart = {
-    courses, price: computePrice(courses)
-  };
+    const courses = mapCartItems(user.cart);
+    const cart = {
+      courses, price: computePrice(courses)
+    };
 
-  res.status(200).json(cart);
+    res.status(200).json(cart);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 module.exports = router;
