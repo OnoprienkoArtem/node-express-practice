@@ -30,3 +30,7 @@ exports.registerValidators = [
     body('name', 'Name should have min 3 symbols').isLength({min: 3})
         .trim(),
 ]
+
+exports.courseValidators = [
+    
+]
