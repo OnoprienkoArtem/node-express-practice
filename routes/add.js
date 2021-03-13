@@ -21,6 +21,11 @@ router.post('/', auth, courseValidators, async (req, res) => {
       title: 'Add',
       isAdd: true,
       error: errors.array()[0].msg,
+      data: {
+        title: req.body.title,
+        price: req.body.price,
+        img: req.body.img
+      }
     });
   };
 

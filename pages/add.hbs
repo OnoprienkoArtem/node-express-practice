@@ -6,17 +6,17 @@
 
 <form action="/add" method="POST">
     <div class="input-field">
-        <input id="title" name="title" type="text" class="validate" required>
+        <input id="title" name="title" type="text" class="validate" required value="{{data.title}}">
         <label for="tilte">Title of course</label>
         <span class="helper-text" data-error="wrong title"></span>
     </div>
     <div class="input-field">
-        <input id="price" name="price" type="number" class="validate" required min="1">
+        <input id="price" name="price" type="number" class="validate" required min="1" value="{{data.price}}">
         <label for="price">Price</label>
         <span class="helper-text" data-error="wrong price"></span>
     </div>
     <div class="input-field">
-        <input id="img" name="img" type="text" class="validate" required>
+        <input id="img" name="img" type="text" class="validate" required value="{{data.img}}">
         <label for="img">URL of image</label>
         <span class="helper-text" data-error="wrong image"></span>
     </div>
