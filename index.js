@@ -19,6 +19,7 @@ const profileRoutes = require('./routes/profile');
 
 const varMiddleware = require('./middleware/variables');
 const userMiddleware = require('./middleware/user');
+const fileMiddleware = require('./middleware/file');
 const errorHandler = require('./middleware/error');
 
 const keys = require('./keys');
@@ -51,6 +52,7 @@ app.use(session({
   saveUninitialized: false,
   store
 }));
+app.use(fileMiddleware.single('avatar'));
 app.use(csrf());
 app.use(flash());
 app.use(varMiddleware);
