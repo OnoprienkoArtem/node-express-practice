@@ -1,4 +1,5 @@
 const {Router} = require('express');
+const User = require('../models/user');
 const auth = require('../middleware/auth');
 
 const router = Router();
@@ -11,8 +12,24 @@ router.get('/', auth, async (req, res) => {
   });
 });
 
-router.post('/', async (req, res) => {
-    
+router.post('/', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id);
+
+        const toChange = {
+            name: req.body.name,
+        }
+
+        if (req.file) {
+            toChange.avatarUrl = '';
+        }
+
+        Object.assign(user, toChange);
+        await user.save();
+        res.redirect('/profile');
+    } catch (e) {
+        console.log(e);
+    }
 });
 
 
