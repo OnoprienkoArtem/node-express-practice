@@ -1,7 +1,5 @@
-module.exports = {
-  MONGODB_URI: '',
-  SESSION_SECRET: 'some secret value',
-  SENDGRID_API_KEY: '',
-  EMAIL_FROM: '',
-  BASE_URL: 'http://localhost:3000'
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./keys.prod');
+} else {
+  module.exports = require('./keys.dev');
 }
